@@ -1,0 +1,14 @@
+# VANILLA, FML, BUKKIT
+icons:
+  default:
+    address: "default"
+    icon: "VANILLA"
+  pvp:
+    address: "pvp.example.com"
+    icon: "BUKKIT"
+
+# Messages
+configReloadSuccessMessage: "&aConfiguration reloaded"
+configReloadFailedMessage: "&cFailed to reload config"
+
+noPermissionMessage: "&cNo permission"
