@@ -1,1 +1,1 @@
-# ForgeIconPlus [![Build Status](https://travis-ci.org/BeyondTheBeast/ForgeIconPlus.svg?branch=master)](https://travis-ci.org/BeyondTheBeast/ForgeIconPlus)
+# ForgeIconPlus [![Build Status](https://travis-ci.org/BeyondTheBeast/ForgeIconPlus.svg?branch=master)](https://travis-ci.org/BeyondTheBeast/ForgeIconPlus) [![Maintainability](https://api.codeclimate.com/v1/badges/b199998e47b7277eb00e/maintainability)](https://codeclimate.com/github/BeyondTheBeast/ForgeIconPlus/maintainability)
