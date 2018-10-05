@@ -1,6 +1,7 @@
 package eu.beyondthebeast.forgeiconplus;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import net.md_5.bungee.api.ChatColor;
@@ -41,19 +42,9 @@ public class ForgeIconPlus extends Plugin implements Listener {
             File configFile = new File(getDataFolder(), "config.yaml");
 
             if (!getDataFolder().exists())
-                getDataFolder().mkdir();
-            if (!configFile.exists()) {
-                configFile.createNewFile();
-                InputStream inputStream = getResourceAsStream("config.yaml");
-                OutputStream outputStream = new FileOutputStream(configFile);
-
-                int bit;
-                while ((bit = inputStream.read()) != -1)
-                    outputStream.write(bit);
-
-                inputStream.close();
-                outputStream.close();
-            }
+                Files.createDirectory(getDataFolder().toPath());
+            if (!configFile.exists())
+                createConfigurationFile(configFile);
 
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
 
@@ -66,6 +57,25 @@ public class ForgeIconPlus extends Plugin implements Listener {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    private void createConfigurationFile(File configurationFile) throws IOException {
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+        try {
+            Files.createFile(configurationFile.toPath());
+            inputStream = getResourceAsStream("config.yaml");
+            outputStream = new FileOutputStream(configurationFile);
+
+            int bit;
+            while ((bit = inputStream.read()) != -1)
+                outputStream.write(bit);
+        } finally {
+            if (inputStream != null)
+                inputStream.close();
+            if (outputStream != null)
+                outputStream.close();
         }
     }
 
