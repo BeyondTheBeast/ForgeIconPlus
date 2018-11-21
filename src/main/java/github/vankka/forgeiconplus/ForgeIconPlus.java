@@ -1,4 +1,4 @@
-package eu.beyondthebeast.forgeiconplus;
+package github.vankka.forgeiconplus;
 
 import java.io.*;
 import java.nio.file.Files;
