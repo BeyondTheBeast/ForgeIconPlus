@@ -1,4 +1,4 @@
 name: ForgeIconPlus
-main: eu.beyondthebeast.forgeiconplus.ForgeIconPlus
+main: github.vankka.forgeiconplus.ForgeIconPlus
 version: @VERSION@
 author: Vankka
