@@ -1,4 +1,4 @@
-package github.vankka.forgeiconplus;
+package me.vankka.forgeiconplus;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -20,7 +20,7 @@ import net.md_5.bungee.event.EventPriority;
 
 public class ForgeIconPlus extends Plugin implements Listener {
     private Configuration configuration;
-    private Map<String, String> icons;
+    private Map<String, String> icons = new HashMap<>();
     private final String header =
             ChatColor.DARK_GRAY + ChatColor.BOLD.toString() + "["
             + ChatColor.BLUE + ChatColor.BOLD.toString() + "F" + ChatColor.RED + ChatColor.BOLD.toString() + "I" + ChatColor.GOLD + ChatColor.BOLD.toString() + "+"
@@ -48,7 +48,7 @@ public class ForgeIconPlus extends Plugin implements Listener {
 
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
 
-            icons = new HashMap<>();
+            icons.clear();
             Configuration section = configuration.getSection("icons");
             for (String key : section.getKeys())
                 icons.put(section.getSection(key).getString("address").toLowerCase(), section.getSection(key).getString("icon"));
@@ -81,11 +81,12 @@ public class ForgeIconPlus extends Plugin implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onProxyPing(ProxyPingEvent event) {
-        if (event.getResponse() == null || event.getConnection() == null)
+        if (event == null || event.getResponse() == null || event.getConnection() == null
+                || event.getConnection().getVirtualHost() == null
+                || event.getConnection().getVirtualHost().toString() == null)
             return;
 
         String icon = icons.getOrDefault(event.getConnection().getVirtualHost().toString().toLowerCase(), icons.get("default"));
-
         if (icon == null)
             return;
 
